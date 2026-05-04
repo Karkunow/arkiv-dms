@@ -2,7 +2,7 @@
 
 A Dead Man's Switch CLI built on [Arkiv](https://arkiv.network) — a decentralized ephemeral database on Ethereum.
 
-Arm a switch with a secret message and a TTL. If you keep checking in, the message stays hidden. If you stop — it triggers and the watcher reveals it.
+Arm a switch with a secret message and a TTL. If you keep checking in, the message stays "hidden" (in this demo it is stored in plain text on-chain, but you could use a third-party service to store it encrypted and have it decrypted by the recipient when the switch triggers). If you stop — it triggers and the watcher reveals it.
 
 ---
 
