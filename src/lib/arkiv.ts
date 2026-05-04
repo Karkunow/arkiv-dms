@@ -7,7 +7,12 @@ export const PROJECT_ATTRIBUTE = {
   value: "arkiv-dms-v1",
 } as const;
 
-export function getWalletClient() {
+export const publicClient = createPublicClient({
+  chain: kaolin,
+  transport: http(),
+});
+
+function createWallet() {
   const raw = process.env.PRIVATE_KEY;
   if (!raw) {
     throw new Error("PRIVATE_KEY is not set. Copy .env.example → .env and add your key.");
@@ -19,9 +24,4 @@ export function getWalletClient() {
   });
 }
 
-export function getPublicClient() {
-  return createPublicClient({
-    chain: kaolin,
-    transport: http(),
-  });
-}
+export const walletClient = createWallet();

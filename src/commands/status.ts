@@ -1,9 +1,8 @@
-import { getPublicClient } from "../lib/arkiv.js";
+import { publicClient } from "../lib/arkiv.js";
 import { parseSwitch } from "../schemas.js";
 import { formatTTL } from "../lib/ttl.js";
 
 export async function status(entityKey: string): Promise<void> {
-  const publicClient = getPublicClient();
   const entity = await publicClient.getEntity(entityKey as `0x${string}`);
   const sw = parseSwitch(entity);
 

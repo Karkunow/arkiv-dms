@@ -1,5 +1,5 @@
 import { eq } from "@arkiv-network/sdk/query";
-import { getPublicClient, PROJECT_ATTRIBUTE } from "../lib/arkiv.js";
+import { publicClient, PROJECT_ATTRIBUTE } from "../lib/arkiv.js";
 import { parseSwitch } from "../schemas.js";
 import { formatTTL } from "../lib/ttl.js";
 
@@ -11,8 +11,6 @@ interface CachedSwitch {
 }
 
 export async function watch(): Promise<void> {
-  const publicClient = getPublicClient();
-
   // Local cache: entityKey → switch data
   // Populated on startup from active switches + from onEntityCreated events.
   // We need this because onEntityExpired only gives us entityKey — the entity
