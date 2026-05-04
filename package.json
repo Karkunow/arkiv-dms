@@ -1,0 +1,21 @@
+{
+  "name": "arkiv-dms",
+  "version": "0.1.0",
+  "description": "Dead Man's Switch — ephemeral secret reveal on Arkiv",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@arkiv-network/sdk": "latest",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.15.0",
+    "typescript": "^5.4.0"
+  }
+}
