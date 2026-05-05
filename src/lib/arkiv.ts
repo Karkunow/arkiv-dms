@@ -12,16 +12,19 @@ export const publicClient = createPublicClient({
   transport: http(),
 });
 
-function createWallet() {
-  const raw = process.env.PRIVATE_KEY;
-  if (!raw) {
-    throw new Error("PRIVATE_KEY is not set. Copy .env.example → .env and add your key.");
-  }
-  return createWalletClient({
-    chain: kaolin,
-    transport: http(),
-    account: privateKeyToAccount(raw as `0x${string}`),
-  });
-}
+let _walletClient: ReturnType<typeof createWalletClient> | undefined;
 
-export const walletClient = createWallet();
+export function getWalletClient() {
+  if (!_walletClient) {
+    const raw = process.env.PRIVATE_KEY;
+    if (!raw) {
+      throw new Error("PRIVATE_KEY is not set. Copy .env.example → .env and add your key.");
+    }
+    _walletClient = createWalletClient({
+      chain: kaolin,
+      transport: http(),
+      account: privateKeyToAccount(raw as `0x${string}`),
+    });
+  }
+  return _walletClient;
+}

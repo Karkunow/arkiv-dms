@@ -1,5 +1,5 @@
 import { jsonToPayload } from "@arkiv-network/sdk/utils";
-import { walletClient, PROJECT_ATTRIBUTE } from "../lib/arkiv.js";
+import { getWalletClient, PROJECT_ATTRIBUTE } from "../lib/arkiv.js";
 import { parseTTL, formatTTL } from "../lib/ttl.js";
 
 export interface CreateOptions {
@@ -19,7 +19,7 @@ export async function createSwitch(opts: CreateOptions): Promise<void> {
   const now = Date.now();
   const expiresAt = now + ttlSeconds * 1000;
 
-  const { entityKey, txHash } = await walletClient.createEntity({
+  const { entityKey, txHash } = await getWalletClient().createEntity({
     payload: jsonToPayload({
       message,
       switchId,

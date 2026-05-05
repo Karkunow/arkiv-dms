@@ -1,4 +1,4 @@
-import { walletClient, publicClient } from "../lib/arkiv.js";
+import { getWalletClient, publicClient } from "../lib/arkiv.js";
 import { formatTTL } from "../lib/ttl.js";
 
 export async function checkin(entityKey: string): Promise<void> {
@@ -12,7 +12,7 @@ export async function checkin(entityKey: string): Promise<void> {
   const ttlSeconds: number =
     typeof intervalAttr?.value === "number" ? intervalAttr.value : 60;
 
-  await walletClient.extendEntity({
+  await getWalletClient().extendEntity({
     entityKey: entityKey as `0x${string}`,
     expiresIn: ttlSeconds,
   });
